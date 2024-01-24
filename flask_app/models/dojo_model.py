@@ -47,6 +47,8 @@ class Dojo:
             JOIN ninjas ON dojos.id = ninjas.dojo_id WHERE dojos.id = %(id)s;
         """
         results = connectToMySQL("dojo_and_ninjas_schema").query_db(query, data)
+        if len(results) == 0:
+            return []
         
         dojo = cls(results[0])
 
